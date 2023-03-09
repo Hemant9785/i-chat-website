@@ -35,6 +35,7 @@ const Login = () => {
             <FormLabel>Email Address</FormLabel>
             <Input
               type="text"
+              placeholder="Enter Your Email Address"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -46,6 +47,7 @@ const Login = () => {
             <FormLabel>Password</FormLabel>
             <InputGroup>
               <Input
+                placeholder="Enter Your Password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => {
