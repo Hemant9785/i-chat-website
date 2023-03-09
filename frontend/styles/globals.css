@@ -1,9 +1,11 @@
 :root {
+  /* min-width: 100vh; */
+  /* background-image: url("/frontend/public/background-img.jpg"); */
   --max-width: 1100px;
   --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
+    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
+    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -105,3 +107,10 @@ a {
     color-scheme: dark;
   }
 }
+/* :root {
+  min-height: 100vh;
+  display: flex;
+  background-image: url("/frontend/background-img.png");
+  background-size: cover;
+  background-position: center;
+} */
