@@ -12,8 +12,13 @@ const userSchema = mongoose.Schema(
         "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=2048x2048&w=is&k=20&c=6hQNACQQjktni8CxSS_QSPqJv2tycskYmpFGzxv3FNs=",
     },
   },
-  { timeStamps: true }
+  { timeStamps: true, toJSON: { getters: true } }
 );
+// userSchema.methods.matchPassword = async (enteredPassword) => {
+// const is = await bcrypt.compare(enteredPassword, this.password);
+//   if (is) return true;
+//   else return false;
+// };
 
 userSchema.pre("save", async function (next) {
   const user = this;
@@ -24,9 +29,7 @@ userSchema.pre("save", async function (next) {
     next();
   } else return next();
 });
-userSchema.methods.matchPassword = async (pass) => {
-  return await bcrypt.compare(pass, this.password);
-};
+
 const userModel = mongoose.model("User", userSchema);
 
 module.exports = userModel;

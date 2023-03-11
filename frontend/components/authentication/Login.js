@@ -8,11 +8,17 @@ import {
   InputGroup,
   InputRightElement,
   Icon,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
+import axios from "axios";
 import { useState } from "react";
-
+import { Toast } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
 const Login = () => {
+  const toast = useToast();
+  const [loading, setLoading] = useState(false);
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setshowPassword] = useState(false);
@@ -20,10 +26,57 @@ const Login = () => {
   const handlePasswordVisibility = () => {
     setshowPassword(!showPassword);
   };
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    alert("submit");
-    console.log(email, password);
+    setLoading(true);
+    if (!email || !password) {
+      toast({
+        title: "Please Fill all the details",
+        duration: 2000,
+        status: "error",
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "http://localhost:5000/api/user/login",
+        {
+          email,
+          password,
+        },
+        config
+      );
+
+      toast({
+        title: "login Successfull",
+        duration: 1000,
+        isClosable: true,
+        position: "bottom",
+        status: "success",
+      });
+      setLoading(false);
+      history?.push("/chats");
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Error occured",
+        description: error?.response?.data?.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+    }
     setEmail("");
     setPassword("");
   };
