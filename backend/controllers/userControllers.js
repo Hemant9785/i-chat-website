@@ -21,7 +21,7 @@ const registerUser = asyncHandler(async (req, res) => {
       res.status(200).json({
         _id: user._id,
         email: user.email,
-        pic: user.password,
+        picture: user.picture,
         token: generateToken(user._id),
         name: user.name,
         isAdmin: user.isAdmin,
@@ -38,23 +38,24 @@ const hashfun = asyncHandler(async (pass) => {
   return hs;
 });
 const authUser = asyncHandler(async (req, res) => {
+  console.log("login request ");
   const { email, password } = req.body;
-  const hs = await hashfun(password);
+
   User.findOne({ email })
     .then((user) => {
       // const is = hs === user.password;
       bcrypt.compare(password, user.password).then((is) => {
-        console.log(is);
+        // console.log(is);
 
-        console.log(hs);
-        console.log(is);
-        console.log(password);
-        console.log(user);
+        // console.log(hs);
+        // console.log(is);
+        // console.log(password);
+        // console.log(user);
         if (is) {
           res.status(200).json({
             _id: user._id,
             email: user.email,
-            pic: user.password,
+            picture: user.pic,
             token: generateToken(user._id),
             name: user.name,
             isAdmin: user.isAdmin,
@@ -69,7 +70,7 @@ const authUser = asyncHandler(async (req, res) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      console.log(err.message);
     });
 });
 
@@ -101,6 +102,15 @@ const allUsers = asyncHandler(async (req, res) => {
     : {};
 
   const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
-  res.send(users);
+  const dataa = users.map((user) => {
+    return {
+      name: user.name,
+      _id: user._id,
+      email: user.email,
+      picture: user.picture,
+    };
+  });
+  console.log(dataa);
+  res.send(dataa);
 });
 module.exports = { registerUser, authUser, allUsers };

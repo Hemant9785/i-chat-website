@@ -16,9 +16,10 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
-
+import { useRouter } from "next/router";
 const Signup = () => {
-  const history = useHistory();
+  const router = useRouter();
+  // const history = useHistory();
   const CLOUDINARY_API_KEY = "745612179691374";
   const CLOUDINARY_API_SECRET = "F3lqVG5iYACQL8xNPrsSUXZgK-0";
   const CLOUDINARY_URL =
@@ -76,7 +77,6 @@ const Signup = () => {
           name,
           email,
           password,
-          pic,
         },
         config
       );
@@ -87,9 +87,10 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
-
+      localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      history?.push("/api/chats");
+      router.replace("/chats");
+      // history?.push("/api/chats");
     } catch (error) {
       console.log(error);
       toast({
