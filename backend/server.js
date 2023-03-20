@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
 const chatRoutes = require("./routes/chatRoutes");
+const messageRoutes = require("./routes/mesageRoutes");
 const app = express();
 dotenv.config();
 
@@ -23,3 +24,4 @@ app.get("/", (req, res) => {
 });
 app.use("/api/user", userRoutes);
 app.use("/api/chats", chatRoutes);
+app.use("/api/messages", messageRoutes);
