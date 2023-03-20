@@ -35,7 +35,7 @@ const Login = () => {
   };
 
   const submitHandler = async () => {
-    console.log("submit");
+    // console.log("submit");
     setLoading(true);
     if (!email || !password) {
       toast({
@@ -62,7 +62,7 @@ const Login = () => {
         { email, password },
         config
       );
-      console.log(data);
+      // console.log(data);
       // console.log(JSON.stringify(data));
       toast({
         title: "Login Successful",
@@ -78,7 +78,7 @@ const Login = () => {
       // history.push("./chats");
       // navigate("/chats");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast({
         title: "Error Occured!",
         description: "e",
@@ -91,7 +91,7 @@ const Login = () => {
     }
   };
   const submitHandler2 = async (e) => {
-    console.log("email");
+    // console.log("email");
     e.preventDefault();
     setLoading(true);
     if (!email || !password) {
@@ -122,7 +122,7 @@ const Login = () => {
           config
         )
         .then(({ data }) => {
-          console.log(data);
+          // console.log(data);
           toast({
             title: "login Successfull***",
             duration: 1000,
@@ -130,8 +130,8 @@ const Login = () => {
             position: "bottom",
             status: "success",
           });
-          console.log(1);
-          console.log(history);
+          // console.log(1);
+          // console.log(history);
 
           localStorage.setItem("userInfo", JSON.stringify(data));
 
@@ -140,8 +140,8 @@ const Login = () => {
           // history.push("/chats");
         });
     } catch (error) {
-      console.log("***");
-      console.log(error);
+      // console.log("***");
+      // console.log(error);
       toast({
         title: "Error occured***",
         description: error.response?.data?.message,
