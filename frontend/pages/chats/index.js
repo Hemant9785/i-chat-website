@@ -12,17 +12,44 @@ const chats = () => {
   const { user } = ChatState();
   // console.log(user);
   return (
-    <div style={{ width: "100%" }}>
+    <Box borderWidth={"10px"} borderColor="yellow" h={"100vh"}>
       {user && <SideDrawer fetchAgain={fetchAgain} />}
-      <Box d="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px">
-        <Flex justify={"space-between"}>
-          {user && <MyChats fetchAgain={fetchAgain} />}
-          {user && (
-            <ChatBox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
-          )}
-        </Flex>
+      <Box
+        borderWidth={"10px"}
+        borderColor="blue"
+        d="flex"
+        justifyContent="space-between"
+        w="100%"
+        h="93%"
+        // h="91.5vh"
+        p="10px"
+      >
+        <div
+          style={{
+            height: "100%",
+            border: "5px solid green",
+          }}
+        >
+          <Flex justify={"space-between"}>
+            {/* <div
+            style={{
+              display: "flex",
+            }}
+          > */}
+            {user && <MyChats fetchAgain={fetchAgain} />}
+            {user && (
+              <ChatBox
+                borderWidth={"10px"}
+                borderColor="red"
+                fetchAgain={fetchAgain}
+                setFetchAgain={setFetchAgain}
+              />
+            )}
+            {/* </div> */}
+          </Flex>
+        </div>
       </Box>
-    </div>
+    </Box>
     // <Box width="100%">
     //   {user && <SideDrawer />}
     //   {user && <MyChat />}

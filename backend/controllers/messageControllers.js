@@ -91,7 +91,7 @@ const sendMessage = asyncHandler(async (req, res) => {
     });
 
     await Chat.findByIdAndUpdate(req.body.chatId, { latestMessage: message });
-    console.log(message);
+    // console.log(message);
 
     res.json(message);
   } catch (error) {

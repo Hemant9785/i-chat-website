@@ -4,7 +4,7 @@ const User = require("../models/userModel");
 const Message = require("../models/messageModel");
 
 const accessChats = asyncHandler(async (req, res) => {
-  console.log(req);
+  // console.log(req);
   const { userId } = req.body;
   if (!userId) {
     throw new Error("user id param not sent with request");
@@ -42,7 +42,7 @@ const accessChats = asyncHandler(async (req, res) => {
         .select("-password");
       res.status(200).json(fullChat);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       res.status(400);
       throw new Error("oops something went wrong");
     }
@@ -51,7 +51,7 @@ const accessChats = asyncHandler(async (req, res) => {
 
 const fetchChats = asyncHandler(async (req, res) => {
   try {
-    console.log("fetch chats");
+    // console.log("fetch chats");
     Chat.find({ users: { $elemMatch: { $eq: req.user._id } } })
       .populate("users", "-password")
       .populate("groupAdmin", "-password")
@@ -62,8 +62,8 @@ const fetchChats = asyncHandler(async (req, res) => {
           path: "latestMessage.sender",
           select: "name email pic",
         });
-        console.log(result);
-        console.log(results);
+        // console.log(result);
+        // console.log(results);
         res.status(200).json(results);
       });
   } catch (error) {
