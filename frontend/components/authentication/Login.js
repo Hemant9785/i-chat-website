@@ -15,8 +15,8 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { useState } from "react";
 import { Toast } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
-import { createHashHistory } from "history";
+// import { useHistory } from "react-router-dom";
+// import { createHashHistory } from "history";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
